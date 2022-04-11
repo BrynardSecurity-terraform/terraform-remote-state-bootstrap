@@ -13,9 +13,9 @@ terraform {
 data "terraform_remote_state" "backend" {
   backend = "remote"
   config  = {
-    organization = "sophos-poc-automation"
+    organization = var.organization
     workspaces = {
-      name = "backend-main"
+      name = var.workspace
     }
   }
 }
@@ -48,7 +48,23 @@ resource "tfe_variable_set" "this" {
   organization = data.terraform_remote_state.backend.outputs.tfe_organization_name
 }
 
-resource "tfe_variable" "this" {
-  count           = local.create ? length(var.tfe_variable) : 0
+resource "tfe_variable" "variable_set_variable" {
+  count           = var.variable_set_variable ? 1 : 0
+  key             = var.key
+  value           = var.value
+  description  = try(trimspace(format("%s %s", var.description, var.description_suffix)), null)
+  category        = var.category
+  sensitive       = var.sensitive
+  hcl             = var.hcl
   variable_set_id = tfe_variable_set.this.id
+}
+
+resource "tfe_variable" "workspace_variable" {
+  count           = var.workspace_variable ? 1 : 0
+  key             = var.key
+  value           = var.value
+  description  = try(trimspace(format("%s %s", var.description, var.description_suffix)), null)
+  category        = var.category
+  hcl             = var.hcl
+  workspace_id    = tfe_workspace.this.id
 }
