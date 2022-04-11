@@ -47,24 +47,3 @@ resource "tfe_variable_set" "this" {
   global       = false
   organization = data.terraform_remote_state.backend.outputs.tfe_organization_name
 }
-
-resource "tfe_variable" "variable_set_variable" {
-  count           = var.variable_set_variable ? 1 : 0
-  key             = var.key
-  value           = var.value
-  description  = try(trimspace(format("%s %s", var.description, var.description_suffix)), null)
-  category        = var.category
-  sensitive       = var.sensitive
-  hcl             = var.hcl
-  variable_set_id = tfe_variable_set.this.id
-}
-
-resource "tfe_variable" "workspace_variable" {
-  count           = var.workspace_variable ? 1 : 0
-  key             = var.key
-  value           = var.value
-  description  = try(trimspace(format("%s %s", var.description, var.description_suffix)), null)
-  category        = var.category
-  hcl             = var.hcl
-  workspace_id    = tfe_workspace.this.id
-}
