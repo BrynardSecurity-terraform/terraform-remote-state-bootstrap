@@ -30,20 +30,10 @@ variable "hcl" {
   default     = false
 }
 
-variable "key" {
-  description = "Name of the variable"
-  type        = string
-}
-
 variable "sensitive" {
   description = "Whether the variable value is sensitive"
   type        = bool
   default     = false
-}
-
-variable "value" {
-  description = "Value of the variable"
-  type        = string
 }
 
 variable "variable_set_variable" {
@@ -54,4 +44,6 @@ variable "variable_set_variable" {
 
 variable "workspace_variable" {
   description = "Whether this variable should be attached to a workspace"
+  type        = bool
+  default     = false
 }
