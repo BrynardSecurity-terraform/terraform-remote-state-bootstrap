@@ -30,6 +30,11 @@ variable "hcl" {
   default     = false
 }
 
+variable "organization" {
+  description = "Terraform Cloud organization which has the backend state-file"
+  type        = string
+}
+
 variable "sensitive" {
   description = "Whether the variable value is sensitive"
   type        = bool
@@ -40,6 +45,11 @@ variable "variable_set_variable" {
   description = "Whether this variable should be added to a variable set"
   type        = bool
   default     = true
+}
+
+variable "workspace" {
+  description = "The name of the workspace where the backend state-file is located"
+  type        = string
 }
 
 variable "workspace_variable" {
