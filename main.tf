@@ -8,19 +8,6 @@ terraform {
 }
 
 #######################################################################
-# Fetch remote state data from backend                                #
-#######################################################################
-data "terraform_remote_state" "backend" {
-  backend = "remote"
-  config  = {
-    organization = var.organization
-    workspaces = {
-      name = var.workspace
-    }
-  }
-}
-
-#######################################################################
 # Init workspace for poc remote state                                 #
 #######################################################################
 module "poc_id" {
@@ -33,7 +20,7 @@ locals {
 
 resource "tfe_workspace" "this" {
   name  = local.workspace_name
-  organization = data.terraform_remote_state.backend.outputs.tfe_organization_name
+  organization =  var.organization
   execution_mode = "remote"
   tag_names = [
     "${var.customer_name}",
@@ -45,5 +32,5 @@ resource "tfe_variable_set" "this" {
   name         = local.workspace_name
   depends_on   = [tfe_workspace.this]
   global       = false
-  organization = data.terraform_remote_state.backend.outputs.tfe_organization_name
+  organization = var.organization
 }
