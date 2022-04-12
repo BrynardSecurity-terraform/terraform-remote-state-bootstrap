@@ -58,7 +58,7 @@ variable "variable_set_id" {
   default     = ""
   validation {
     condition = var.variable_set_id != ""
-    error_message = "If variable_set is true, variable set ID must be provided"
+    error_message = "If variable_set is true, variable set ID must be provided."
   }
 }
 
@@ -68,6 +68,6 @@ variable "workspace_id" {
   default     = ""
   validation {
     condition = var.workspace_id != ""
-    error_message = "If variable_set is false, workspace ID must be provided"
+    error_message = "If variable_set is false, workspace ID must be provided."
   }
 }
