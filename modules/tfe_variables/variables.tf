@@ -6,6 +6,12 @@ variable "category" {
   default     = "terraform"
 }
 
+variable "create_variable" {
+  description = "Whether this variable should be created"
+  type        = bool
+  default     = false
+}
+
 variable "customer_name" {
   description = "POC customer name"
   type        = string
