@@ -28,7 +28,8 @@ resource "tfe_workspace" "this" {
   execution_mode = "remote"
   tag_names = [
     "${var.customer_name}",
-    "${local.workspace_name}"
+    "${module.random_pet.random_pet}",
+    "${module.random_id.random_id}"
   ]
 }
 
