@@ -40,6 +40,11 @@ variable "hcl" {
   default     = false
 }
 
+variable "oauth_token_id" {
+  description = "The VCS Connection token to use"
+  type        = string
+}
+
 variable "organization" {
   description = "Terraform Cloud organization which has the backend state-file"
   type        = string

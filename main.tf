@@ -35,7 +35,7 @@ resource "tfe_workspace" "this" {
     content {
       identifier        = var.vcs_repository
       branch            = var.vcs_branch
-      oauth_token_id    = tfe_oauth_client.this.id
+      oauth_token_id    = var.oauth_token_id
     }
   }
 
