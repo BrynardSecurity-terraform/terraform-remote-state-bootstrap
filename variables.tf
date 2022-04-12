@@ -43,6 +43,11 @@ variable "hcl" {
 variable "oauth_token_id" {
   description = "The VCS Connection token to use"
   type        = string
+  default     = ""
+  validation {
+    condition = length(var.oauth_token_id) == null
+    error_message = "OAuth Token ID cannot be empty if add_vcs_repo is enabled!"
+  }
 }
 
 variable "organization" {
@@ -65,12 +70,17 @@ variable "variable_set_variable" {
 variable "vcs_repository" {
   description = "The VCS Repository to add to the workspace"
   type        = string
+  default     = ""
+  validation {
+    condition = length(var.vcs_repository) == null
+    error_message = "VCS Repository cannot be empty if add_vcs_repo is enabled!"
+  }
 }
 
 variable "working_directory" {
   description = "Working directory of the VCS repository from which TF plans are run"
   type        = string
-  default     = ""
+  default     = "/"
 }
 
 variable "workspace" {
