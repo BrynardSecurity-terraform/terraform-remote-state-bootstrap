@@ -9,7 +9,7 @@ variable "category" {
 variable "customer_name" {
   description = "POC customer name"
   type        = string
-  default     = "Acme Co."
+  default     = "Acme Co"
 }
 
 variable "description" {
