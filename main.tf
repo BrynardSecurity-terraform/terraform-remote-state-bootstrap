@@ -20,6 +20,7 @@ module "random_id" {
 
 locals {
   workspace_name = "${module.random_pet.random_pet}_${module.random_id.random_id}"
+  customer_name = lower(replace("${var.customer_name}", " ", "_"))
 }
 
 resource "tfe_workspace" "this" {
@@ -27,7 +28,7 @@ resource "tfe_workspace" "this" {
   organization =  var.organization
   execution_mode = "remote"
   tag_names = [
-    "${var.customer_name}",
+    "${local.customer_name}",
     "${module.random_pet.random_pet}",
     "${module.random_id.random_id}"
   ]
