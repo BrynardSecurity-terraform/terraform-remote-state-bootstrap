@@ -46,12 +46,28 @@ variable "value" {
   type        = string
 }
 
-variable "variable_set_variable" {
+variable "variable_set" {
   description = "Whether this variable should be added to a variable set"
   type        = bool
   default     = true
 }
 
-variable "workspace_variable" {
-  description = "Whether this variable should be attached to a workspace"
+variable "variable_set_id" {
+  description = "Variable Set ID for the variable set"
+  type        = string
+  default     = ""
+  validation {
+    condition = var.variable_set_id != ""
+    error_message = "If variable_set is true, variable set ID must be provided"
+  }
+}
+
+variable "workspace_id" {
+  description = "Workspace ID for the variable"
+  type        = string
+  default     = ""
+  validation {
+    condition = var.workspace_id != ""
+    error_message = "If variable_set is false, workspace ID must be provided"
+  }
 }
