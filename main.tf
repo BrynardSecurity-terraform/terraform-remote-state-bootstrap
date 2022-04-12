@@ -29,8 +29,8 @@ resource "tfe_workspace" "this" {
   name                = local.workspace_name
   organization        = var.organization
   execution_mode      = "remote"
-  allow_destroy_plan  = true
-  auto_apply          = true
+  allow_destroy_plan  = var.allow_destroy_plan
+  auto_apply          = var.auto_apply
   working_directory   = var.working_directory
 
   dynamic "vcs_repo" {
