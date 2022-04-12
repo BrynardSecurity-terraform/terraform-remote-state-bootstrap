@@ -5,6 +5,12 @@ variable "add_vcs_repo" {
   default     = false
 }
 
+variable "vcs_branch" {
+  description = "Branch of the VCS Repository to add. Default is 'main'"
+  type        = string
+  default     = "main"
+}
+
 variable "category" {
   description = "Whether this is a Terraform or environment variable. Available options: terraform or env"
   type        = string
@@ -49,6 +55,12 @@ variable "variable_set_variable" {
   description = "Whether this variable should be added to a variable set"
   type        = bool
   default     = true
+}
+
+variable "vcs_repository" {
+  description = "The VCS Repository to add to the workspace"
+  type        = string
+  default     = ""
 }
 
 variable "working_directory" {
