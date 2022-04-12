@@ -4,7 +4,7 @@ variable "api_url" {
   type        = string
 }
 
-variable "http_url" {
+variable "https_url" {
   description = "HTTP URL of the VCS provider"
   type        = string
 }
