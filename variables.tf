@@ -1,7 +1,8 @@
 # Remote State Bootstrap Module -- variables.tf
-variable "api_url" {
-  description = "API URL of the Version Control Provider"
-  type        = string
+variable "add_vcs_repo" {
+  description = "Whether or not to add a VCS repo to this workspace"
+  type        = bool
+  default     = false
 }
 
 variable "category" {
@@ -33,16 +34,6 @@ variable "hcl" {
   default     = false
 }
 
-variable "http_url" {
-  description = "HTTP URL of the VCS provider"
-  type        = string
-}
-
-variable "oauth_token" {
-  description = "OAuth Token String provided by the VCS provider"
-  type        = string
-}
-
 variable "organization" {
   description = "Terraform Cloud organization which has the backend state-file"
   type        = string
@@ -52,11 +43,6 @@ variable "sensitive" {
   description = "Whether the variable value is sensitive"
   type        = bool
   default     = false
-}
-
-variable "tfe_oauth_client_name" {
-  description = "Display name of the OAuth Client"
-  type        = string
 }
 
 variable "variable_set_variable" {
