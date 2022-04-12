@@ -54,6 +54,7 @@ variable "variable_set_variable" {
 variable "working_directory" {
   description = "Working directory of the VCS repository from which TF plans are run"
   type        = string
+  default     = ""
 }
 
 variable "workspace" {
