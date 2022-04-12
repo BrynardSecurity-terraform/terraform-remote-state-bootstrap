@@ -5,6 +5,18 @@ variable "add_vcs_repo" {
   default     = false
 }
 
+variable "allow_destroy_plan" {
+  description = "Whether destroy plans can be queued on the workspace"
+  type        = bool
+  default     = false
+}
+
+variable "auto_apply" {
+  description = "Whether to automatically apply changes when a Terraform plan is successful. Defaults to false"
+  type        = bool
+  default     = false
+}
+
 variable "vcs_branch" {
   description = "Branch of the VCS Repository to add. Default is 'main'"
   type        = string
@@ -45,7 +57,7 @@ variable "oauth_token_id" {
   type        = string
   default     = ""
   validation {
-    condition = var.oauth_token_id == null
+    condition = var.oauth_token_id != ""
     error_message = "OAuth Token ID cannot be empty if add_vcs_repo is enabled!"
   }
 }
@@ -72,7 +84,7 @@ variable "vcs_repository" {
   type        = string
   default     = ""
   validation {
-    condition = var.vcs_repository == null
+    condition = var.vcs_repository != ""
     error_message = "VCS Repository cannot be empty if add_vcs_repo is enabled!"
   }
 }
