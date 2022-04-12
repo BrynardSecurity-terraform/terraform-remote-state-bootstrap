@@ -30,12 +30,15 @@ resource "tfe_workspace" "this" {
   allow_destroy_plan  = true
   auto_apply          = true
   working_directory   = var.working_directory
-  vcs_repo {
-    count             = var.add_vcs_repo ? 0 : 1
-    identifier        = var.vcs_repository
-    branch            = var.vcs_branch
-    oauth_token_id    = tfe_oauth_client.this.id
+  dynamic "vcs_repo" {
+    for_each = var.add_vcs_repo == true ? [true] : []
+    content {
+      identifier        = var.vcs_repository
+      branch            = var.vcs_branch
+      oauth_token_id    = tfe_oauth_client.this.id
+    }
   }
+
   tag_names = [
     "${local.customer_name}",
     "${module.random_pet.random_pet}",
