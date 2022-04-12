@@ -19,7 +19,7 @@ module "random_id" {
 }
 
 locals {
-  workspace_name = "${module.random_pet.random_pet}-${module.random_id.random_id}"
+  workspace_name = "${module.random_pet.random_pet}_${module.random_id.random_id}"
 }
 
 resource "tfe_workspace" "this" {
