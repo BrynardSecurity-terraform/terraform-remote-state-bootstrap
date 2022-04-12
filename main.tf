@@ -23,15 +23,6 @@ locals {
   customer_name = lower(replace("${var.customer_name}", " ", "_"))
 }
 
-resource "tfe_oauth_client" "this" {
-  name                = var.tfe_oauth_client_name
-  organization        = var.organization
-  api_url             = var.api_url
-  http_url            = var.http_url
-  oauth_token         = var.oauth_token
-  service_provider    = var.service_provider
-}
-
 resource "tfe_workspace" "this" {
   name                = local.workspace_name
   organization        = var.organization
@@ -40,6 +31,7 @@ resource "tfe_workspace" "this" {
   auto_apply          = true
   working_directory   = var.working_directory
   vcs_repo {
+    count             = var.add_vcs_repo ? 0 : 1
     identifier        = var.vcs_repository
     branch            = var.vcs_branch
     oauth_token_id    = tfe_oauth_client.this.id
