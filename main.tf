@@ -10,12 +10,16 @@ terraform {
 #######################################################################
 # Init workspace for poc remote state                                 #
 #######################################################################
-module "poc_id" {
+module "random_pet" {
   source = "git::https://github.com/BrynardSecurity-terraform/terraform-random-pet.git"
 }
 
+module "random_id" {
+  source = "git::https://github.com/BrynardSecurity-terraform/terraform-random-id.git"
+}
+
 locals {
-  workspace_name = "${var.customer_name}-${module.poc_id.random_pet}"
+  workspace_name = "${module.random_pet.random_pet}-${module.random_id.random_id}"
 }
 
 resource "tfe_workspace" "this" {
@@ -24,7 +28,7 @@ resource "tfe_workspace" "this" {
   execution_mode = "remote"
   tag_names = [
     "${var.customer_name}",
-    "${module.poc_id.random_pet}"
+    "${local.workspace_name}"
   ]
 }
 
