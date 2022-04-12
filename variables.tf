@@ -43,7 +43,6 @@ variable "hcl" {
 variable "oauth_token_id" {
   description = "The VCS Connection token to use"
   type        = string
-  default     = ""
 }
 
 variable "organization" {
