@@ -73,7 +73,7 @@ variable "sensitive" {
   default     = false
 }
 
-variable "variable_set_variable" {
+variable "variable_set" {
   description = "Whether this variable should be added to a variable set"
   type        = bool
   default     = true

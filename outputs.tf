@@ -5,3 +5,11 @@ output "customer_name" {
 output "workspace_name" {
   value = local.workspace_name
 }
+
+output "random_pet" {
+  value = module.random_pet.random_pet
+}
+
+output "random_id" {
+  value = module.random_id.random_id
+}
