@@ -43,9 +43,9 @@ resource "tfe_workspace" "this" {
   dynamic "vcs_repo" {
     for_each = var.add_vcs_repo == true ? [] : [true]
     content {
-      identifier      = null
-      branch          = null
-      oauth_token_id  = null
+      identifier      = ""
+      branch          = ""
+      oauth_token_id  = ""
     }
   }
 
