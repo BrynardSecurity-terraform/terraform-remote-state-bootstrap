@@ -24,7 +24,7 @@ locals {
 }
 
 resource "tfe_workspace" "this" {
-  name                = local.workspace_name
+  name                = "${local.customer_name}_${local.workspace_name}"
   organization        = var.organization
   execution_mode      = "remote"
   allow_destroy_plan  = var.allow_destroy_plan
