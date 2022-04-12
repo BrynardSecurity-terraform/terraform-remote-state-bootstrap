@@ -45,7 +45,7 @@ variable "oauth_token_id" {
   type        = string
   default     = ""
   validation {
-    condition = length(var.oauth_token_id) == null
+    condition = var.oauth_token_id == null
     error_message = "OAuth Token ID cannot be empty if add_vcs_repo is enabled!"
   }
 }
@@ -72,7 +72,7 @@ variable "vcs_repository" {
   type        = string
   default     = ""
   validation {
-    condition = length(var.vcs_repository) == null
+    condition = var.vcs_repository == null
     error_message = "VCS Repository cannot be empty if add_vcs_repo is enabled!"
   }
 }
