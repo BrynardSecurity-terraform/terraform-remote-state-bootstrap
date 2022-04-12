@@ -43,7 +43,6 @@ variable "hcl" {
 variable "oauth_token_id" {
   description = "The VCS Connection token to use"
   type        = string
-  default     = ""
 }
 
 variable "organization" {
@@ -66,7 +65,6 @@ variable "variable_set_variable" {
 variable "vcs_repository" {
   description = "The VCS Repository to add to the workspace"
   type        = string
-  default     = ""
 }
 
 variable "working_directory" {
