@@ -58,22 +58,7 @@ variable "variable_set" {
   default     = true
 }
 
-variable "variable_set_id" {
-  description = "Variable Set ID for the variable set"
-  type        = string
-  default     = ""
-  validation {
-    condition = var.variable_set_id != ""
-    error_message = "If variable_set is true, variable set ID must be provided."
-  }
-}
-
 variable "workspace_id" {
   description = "Workspace ID for the variable"
   type        = string
-  default     = ""
-  validation {
-    condition = var.workspace_id != ""
-    error_message = "If variable_set is false, workspace ID must be provided."
-  }
 }
