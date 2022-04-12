@@ -7,17 +7,5 @@ resource "tfe_variable" "this" {
   category        = var.category
   sensitive       = var.sensitive
   hcl             = var.hcl
-  dynamic "variable_set_id" {
-    count = var.variable_set ? [1] : []
-    content {
-      variable_set_id = var.variable_set_id
-    }
-  }
-
-  dynamic "workspace_id" {
-    count = var.variable_set ? [] : [1]
-    content {
-      workspace_id = var.workspace_id
-    }
-  }
+  workspace_ids   = var.workspace_id
 }
