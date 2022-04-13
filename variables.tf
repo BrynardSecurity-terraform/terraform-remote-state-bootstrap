@@ -62,6 +62,12 @@ variable "execution_mode" {
   }
 }
 
+variable "global" {
+  description = "Should the variable set be available globally or only to specific workspaces"
+  type        = bool
+  default     = false
+}
+
 variable "hcl" {
   description = "Whether to evaluate the value of the variable as a string of HCL code"
   type        = bool

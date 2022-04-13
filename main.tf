@@ -34,7 +34,7 @@ resource "tfe_workspace" "this" {
 
 resource "tfe_variable_set" "this" {
   count        = var.create_variable_set ? 1 : 0
-  name         = local.workspace_name
+  name         = var.name
   global       = var.global
   organization = var.organization
 }
