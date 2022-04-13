@@ -58,7 +58,7 @@ variable "execution_mode" {
   default     = "remote"
   validation {
     condition = contains(["remote", "local", "agent"], var.execution_mode)
-    error_message = "Execution mode must be one of: remote, local, or agent"
+    error_message = "Execution mode must be one of: remote, local, or agent."
   }
 }
 
