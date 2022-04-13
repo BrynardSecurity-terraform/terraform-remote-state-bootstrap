@@ -29,6 +29,12 @@ variable "category" {
   default     = "terraform"
 }
 
+variable "create_variable_set" {
+  description = "Whether or not to create a variable set"
+  type        = bool
+  default     = false
+}
+
 variable "customer_name" {
   description = "POC customer name"
   type        = string
@@ -46,10 +52,25 @@ variable "description_suffix" {
   default     = ""
 }
 
+variable "execution_mode" {
+  description = "Which execution mode to use. Available options: remote, local, or agent"
+  type        = string
+  default     = "remote"
+  validation {
+    condition = contains(["remote", "local", "agent"], var.execution_mode)
+    error_message = "Execution mode must be one of: remote, local, or agent"
+  }
+}
+
 variable "hcl" {
   description = "Whether to evaluate the value of the variable as a string of HCL code"
   type        = bool
   default     = false
+}
+
+variable "name" {
+  description = "Workspace name"
+  type        = string
 }
 
 variable "oauth_token_id" {
@@ -71,6 +92,12 @@ variable "sensitive" {
   description = "Whether the variable value is sensitive"
   type        = bool
   default     = false
+}
+
+variable "tags" {
+  description = "Tags to apply to workspace"
+  type        = list(string)
+  default     = []
 }
 
 variable "variable_set" {
