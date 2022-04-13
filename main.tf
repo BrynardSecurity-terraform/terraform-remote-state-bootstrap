@@ -10,26 +10,15 @@ terraform {
 #######################################################################
 # Init workspace for poc remote state                                 #
 #######################################################################
-module "random_pet" {
-  source = "git::https://github.com/BrynardSecurity-terraform/terraform-random-pet.git"
-}
-
-module "random_id" {
-  source = "git::https://github.com/BrynardSecurity-terraform/terraform-random-id.git"
-}
-
-locals {
-  workspace_name  = "${module.random_pet.random_pet}_${module.random_id.random_id}"
-  customer_name   = lower(replace("${var.customer_name}", " ", "_"))
-}
 
 resource "tfe_workspace" "this" {
-  name                = "${local.customer_name}_${local.workspace_name}"
-  organization        = var.organization
-  execution_mode      = "remote"
-  allow_destroy_plan  = var.allow_destroy_plan
-  auto_apply          = var.auto_apply
-  working_directory   = var.working_directory
+  name                      = var.name
+  organization              = var.organization
+  execution_mode            = var.execution_mode
+  allow_destroy_plan        = var.allow_destroy_plan
+  auto_apply                = var.auto_apply
+  working_directory         = var.working_directory
+  remote_state_consumer_ids = tfe_workspace.this.id
 
   dynamic "vcs_repo" {
     for_each = var.add_vcs_repo ? [1] : []
@@ -40,16 +29,12 @@ resource "tfe_workspace" "this" {
     }
   }
 
-  tag_names = [
-    "${local.customer_name}",
-    "${module.random_pet.random_pet}",
-    "${module.random_id.random_id}"
-  ]
+  tag_names = var.tags
 }
 
 resource "tfe_variable_set" "this" {
+  count        = var.create_variable_set ? 1 : 0
   name         = local.workspace_name
-  depends_on   = [tfe_workspace.this]
-  global       = false
+  global       = var.global
   organization = var.organization
 }
