@@ -18,7 +18,7 @@ resource "tfe_workspace" "this" {
   allow_destroy_plan        = var.allow_destroy_plan
   auto_apply                = var.auto_apply
   working_directory         = var.working_directory
-  remote_state_consumer_ids = tfe_workspace.this.id
+  remote_state_consumer_ids = var.remote_state_consumer_ids
 
   dynamic "vcs_repo" {
     for_each = var.add_vcs_repo ? [1] : []
