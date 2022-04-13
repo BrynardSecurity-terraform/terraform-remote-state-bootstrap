@@ -18,6 +18,7 @@ resource "tfe_workspace" "this" {
   allow_destroy_plan        = var.allow_destroy_plan
   auto_apply                = var.auto_apply
   working_directory         = var.working_directory
+  description               = var.workspace_description
 
   dynamic "vcs_repo" {
     for_each = var.add_vcs_repo ? [1] : []

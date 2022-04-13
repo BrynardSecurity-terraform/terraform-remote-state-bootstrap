@@ -133,6 +133,12 @@ variable "workspace" {
   type        = string
 }
 
+variable "workspace_description" {
+  description = "Description of the workspace"
+  type        = string
+  default     = ""
+}
+
 variable "workspace_variable" {
   description = "Whether this variable should be attached to a workspace"
   type        = bool
