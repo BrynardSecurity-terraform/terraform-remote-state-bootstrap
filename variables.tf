@@ -94,12 +94,6 @@ variable "organization" {
   type        = string
 }
 
-variable "remote_state_consumer_ids" {
-  description = "Remote State Consumer ID's for other workspaces that may need the workspace outputs"
-  type        = string
-  default     = ""
-}
-
 variable "sensitive" {
   description = "Whether the variable value is sensitive"
   type        = bool
