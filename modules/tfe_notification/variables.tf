@@ -38,7 +38,7 @@ variable "triggers" {
   type        = list(string)
   default     = ["run:completed"]
   validation {
-    condition = var.triggers != ""
+    condition = var.triggers != "" && var.create_notification ? 1 : 0
     error_message = "Trigger must be one of: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored."
  }
 }
@@ -48,7 +48,7 @@ variable "url" {
   type        = string
   default     = "url"
   validation {
-    condition = var.url != ""
+    condition = var.url != "" && var.create_notification ? 1 : 0
     error_message = "URL cannot be an empty string."
   }
 }
