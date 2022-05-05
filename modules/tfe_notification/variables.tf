@@ -38,7 +38,7 @@ variable "triggers" {
   type        = list(string)
   default     = ["run:completed"]
   validation {
-    condition = contains(["run:created", "run:planning", "run:needs_attention", "run:applying", "run:completed", "run:errored"], var.triggers)
+    condition = var.triggers != ""
     error_message = "Trigger must be one of: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored."
  }
 }
@@ -47,10 +47,10 @@ variable "url" {
   description = "The URL for generic and slack destination types"
   type        = string
   default     = "url"
-  #validation {
-  #  condition = var.url != ""
-  #  error_message = "URL cannot be an empty string."
-  #}
+  validation {
+    condition = var.url != ""
+    error_message = "URL cannot be an empty string."
+  }
 }
 
 variable "workspace_id" {
