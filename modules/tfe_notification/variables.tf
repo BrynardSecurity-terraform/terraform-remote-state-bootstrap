@@ -52,3 +52,8 @@ variable "url" {
     error_message = "URL cannot be an empty string."
   }
 }
+
+variable "workspace_id" {
+  description = "Workspace ID for the variable"
+  type        = string
+}

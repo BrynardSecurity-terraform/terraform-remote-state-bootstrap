@@ -5,19 +5,19 @@ resource "tfe_notification_configuration" "this" {
   enabled             = var.enabled
 
   dynamic "destination_type" {
-    count             = var.destination_type == "email"
+    count             = var.destination_type == "email" && var.create_notification ? 1 : 0
     content {
       email_user_ids  = var.email_user_ids
     }
   }
 
   dynamic "destination_type" {
-    count             = var.destination_type != "email"
+    count             = var.destination_type != "email" && var.create_notification ? 1 : 0
     content {
       url             = var.url
     }
   }
 
   triggers          = var.triggers
-  workspace_id      = tfe_workspace.this.id
+  workspace_id      = var.workspace_id
 }
