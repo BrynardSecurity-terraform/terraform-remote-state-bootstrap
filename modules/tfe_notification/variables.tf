@@ -39,7 +39,7 @@ variable "triggers" {
   default     = []
   validation {
     condition = contains(["run:created", "run:planning", "run:needs_attention", "run:applying", "run:completed", "run:errored"], var.triggers)
-    error_message = "Trigger must be one of: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored"
+    error_message = "Trigger must be one of: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored."
   }
 }
 
