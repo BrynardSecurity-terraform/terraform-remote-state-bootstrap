@@ -18,6 +18,6 @@ resource "tfe_notification_configuration" "this" {
     }
   }
 
-  triggers          = var.triggers
+  triggers          = var.triggers && var.create_notification ? 1 : 0
   workspace_id      = var.workspace_id
 }
