@@ -11,12 +11,12 @@ variable "destination_type" {
   default     = "generic"
   validation {
     condition = contains(["generic", "email", "slack"], var.destination_type)
-    error_message = "Destination type myst be one of: generic, email, slack"
+    error_message = "Destination type myst be one of: generic, email, slack."
   }
 }
 
 variable "email_user_ids" {
-  description = "Email addresses to send the notification to if destination type is set to email"
+  description = "Email addresses to send the notification to if destination type is set to email."
   type        = list(string)
   default     = []
 }
