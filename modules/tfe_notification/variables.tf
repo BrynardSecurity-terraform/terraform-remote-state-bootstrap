@@ -46,4 +46,9 @@ variable "triggers" {
 variable "url" {
   description = "The URL for generic and slack destination types"
   type        = string
+  default     = ""
+  validation {
+    condition = var.url != ""
+    error_message = "URL cannot be an empty string."
+  }
 }
