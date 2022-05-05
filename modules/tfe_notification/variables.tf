@@ -36,7 +36,7 @@ variable "notification_name" {
 variable "triggers" {
   description = "Event that should trigger the notification. Available options are: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored"
   type        = list(string)
-  default     = []
+  default     = ["run:completed"]
   validation {
     condition = contains(["run:created", "run:planning", "run:needs_attention", "run:applying", "run:completed", "run:errored"], var.triggers)
     error_message = "Trigger must be one of: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored."
@@ -46,7 +46,7 @@ variable "triggers" {
 variable "url" {
   description = "The URL for generic and slack destination types"
   type        = string
-  default     = ""
+  default     = "url"
   validation {
     condition = var.url != ""
     error_message = "URL cannot be an empty string."
