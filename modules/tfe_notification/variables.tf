@@ -56,4 +56,5 @@ variable "url" {
 variable "workspace_id" {
   description = "Workspace ID for the variable"
   type        = string
+  default     = ""
 }
