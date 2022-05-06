@@ -8,10 +8,10 @@ variable "create_notification" {
 variable "destination_type" {
   description = "Notification destination type. Available options: email, generic, slack"
   type        = string
-  default     = "generic"
+  default     = ""
   validation {
-    condition = contains(["generic", "email", "slack"], var.destination_type)
-    error_message = "Destination type myst be one of: generic, email, slack."
+    condition = contains(["generic","email","slack"], var.destination_type)
+    error_message = "Destination type must be one of: generic, email, slack."
   }
 }
 
@@ -36,9 +36,9 @@ variable "notification_name" {
 variable "triggers" {
   description = "Event that should trigger the notification. Available options are: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored"
   type        = list(string)
-  default     = ["run:completed"]
+  default     = []
   validation {
-    condition = var.triggers != ""
+    condition = !contains([for trigger in var.triggers: contains( ["run:created","run:planning","run:needs_attention","run:applying","run:completed","run:errored"], trigger)], false)
     error_message = "Trigger must be one of: run:created, run:planning, run:needs_attention, run:applying, run:completed, run:errored."
  }
 }
