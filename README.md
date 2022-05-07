@@ -1,5 +1,6 @@
 # Welcome to Terraform Remote State Bootstrapping Module 👋
 ![Version](https://img.shields.io/badge/version-v0.0.4-blue.svg?cacheSeconds=2592000)
+[![tfsec](https://github.com/BrynardSecurity-terraform/terraform-remote-state-bootstrap/actions/workflows/tfsec.yml/badge.svg)](https://github.com/BrynardSecurity-terraform/terraform-remote-state-bootstrap/actions/workflows/tfsec.yml)
 [![Twitter: DevopsPleb](https://img.shields.io/twitter/follow/DevopsPleb.svg?style=social)](https://twitter.com/DevopsPleb)
 
 > Terraform module to bootstrap a Terraform Cloud Workspace for Version Control initiated runs.
