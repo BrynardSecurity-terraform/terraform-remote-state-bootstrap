@@ -12,13 +12,6 @@
 * Twitter: [@DevopsPleb](https://twitter.com/DevopsPleb)
 * Github: [@RalphBrynard](https://github.com/RalphBrynard)
 
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -78,3 +71,11 @@ No modules.
 | <a name="output_repository"></a> [repository](#output\_repository) | n/a |
 | <a name="output_workspace_id"></a> [workspace\_id](#output\_workspace\_id) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
