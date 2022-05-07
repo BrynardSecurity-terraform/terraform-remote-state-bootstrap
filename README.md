@@ -1,5 +1,5 @@
 # Welcome to Terraform Remote State Bootstrapping Module 👋
-![Version](https://img.shields.io/badge/version-v0.0.4-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-v0.0.3-blue.svg?cacheSeconds=2592000)
 [![Twitter: DevopsPleb](https://img.shields.io/twitter/follow/DevopsPleb.svg?style=social)](https://twitter.com/DevopsPleb)
 
 > Terraform module to bootstrap a Terraform Cloud Workspace for Version Control initiated runs.
