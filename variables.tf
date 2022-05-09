@@ -57,7 +57,7 @@ variable "execution_mode" {
   type        = string
   default     = "remote"
   validation {
-    condition = contains(["remote", "local", "agent"], var.execution_mode)
+    condition     = contains(["remote", "local", "agent"], var.execution_mode)
     error_message = "Execution mode must be one of: remote, local, or agent."
   }
 }
@@ -83,10 +83,6 @@ variable "oauth_token_id" {
   description = "The VCS Connection token to use"
   type        = string
   default     = ""
-  validation {
-    condition = var.oauth_token_id != ""
-    error_message = "OAuth Token ID cannot be empty if add_vcs_repo is enabled!"
-  }
 }
 
 variable "organization" {
@@ -116,10 +112,6 @@ variable "vcs_repository" {
   description = "The VCS Repository to add to the workspace"
   type        = string
   default     = ""
-  validation {
-    condition = var.vcs_repository != ""
-    error_message = "VCS Repository cannot be empty if add_vcs_repo is enabled!"
-  }
 }
 
 variable "working_directory" {
