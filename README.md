@@ -33,6 +33,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [tfe_organization.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/organization) | resource |
 | [tfe_variable_set.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable_set) | resource |
 | [tfe_workspace.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace) | resource |
 
@@ -41,9 +42,11 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_add_vcs_repo"></a> [add\_vcs\_repo](#input\_add\_vcs\_repo) | Whether or not to add a VCS repo to this workspace | `bool` | `false` | no |
+| <a name="input_admin_email"></a> [admin\_email](#input\_admin\_email) | Admin email address | `string` | n/a | yes |
 | <a name="input_allow_destroy_plan"></a> [allow\_destroy\_plan](#input\_allow\_destroy\_plan) | Whether destroy plans can be queued on the workspace | `bool` | `false` | no |
 | <a name="input_auto_apply"></a> [auto\_apply](#input\_auto\_apply) | Whether to automatically apply changes when a Terraform plan is successful. Defaults to false | `bool` | `false` | no |
 | <a name="input_category"></a> [category](#input\_category) | Whether this is a Terraform or environment variable. Available options: terraform or env | `string` | `"terraform"` | no |
+| <a name="input_create_organization"></a> [create\_organization](#input\_create\_organization) | Whether or not to create the Terraform cloud organization | `bool` | `false` | no |
 | <a name="input_create_variable_set"></a> [create\_variable\_set](#input\_create\_variable\_set) | Whether or not to create a variable set | `bool` | `false` | no |
 | <a name="input_customer_name"></a> [customer\_name](#input\_customer\_name) | POC customer name | `string` | n/a | yes |
 | <a name="input_description"></a> [description](#input\_description) | The description of the variable | `string` | `null` | no |
@@ -54,6 +57,7 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | Workspace name | `string` | n/a | yes |
 | <a name="input_oauth_token_id"></a> [oauth\_token\_id](#input\_oauth\_token\_id) | The VCS Connection token to use | `string` | `""` | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | Terraform Cloud organization which has the backend state-file | `string` | n/a | yes |
+| <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | Terraform organization name | `string` | n/a | yes |
 | <a name="input_sensitive"></a> [sensitive](#input\_sensitive) | Whether the variable value is sensitive | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to workspace | `list(string)` | `[]` | no |
 | <a name="input_variable_set"></a> [variable\_set](#input\_variable\_set) | Whether this variable should be added to a variable set | `bool` | `true` | no |

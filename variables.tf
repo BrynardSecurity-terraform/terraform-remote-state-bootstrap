@@ -5,6 +5,11 @@ variable "add_vcs_repo" {
   default     = false
 }
 
+variable "admin_email" {
+  description = "Admin email address"
+  type        = string
+}
+
 variable "allow_destroy_plan" {
   description = "Whether destroy plans can be queued on the workspace"
   type        = bool
@@ -27,6 +32,12 @@ variable "category" {
   description = "Whether this is a Terraform or environment variable. Available options: terraform or env"
   type        = string
   default     = "terraform"
+}
+
+variable "create_organization" {
+  description = "Whether or not to create the Terraform cloud organization"
+  type        = bool
+  default     = false
 }
 
 variable "create_variable_set" {
@@ -87,6 +98,11 @@ variable "oauth_token_id" {
 
 variable "organization" {
   description = "Terraform Cloud organization which has the backend state-file"
+  type        = string
+}
+
+variable "organization_name" {
+  description = "Terraform organization name"
   type        = string
 }
 

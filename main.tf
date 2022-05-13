@@ -10,6 +10,11 @@ terraform {
 #######################################################################
 # Init workspace for poc remote state                                 #
 #######################################################################
+resource "tfe_organization" "this" {
+  count = var.create_organization ? 1 : 0
+  name  = var.organization_name
+  email = var.admin_email
+}
 
 resource "tfe_workspace" "this" {
   name               = var.name
