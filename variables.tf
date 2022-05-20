@@ -10,9 +10,15 @@ variable "collaborator_auth_policy" {
   type        = string
   default     = "password"
   validation {
-    condition = contains(["password","two_factor_mandatory"],var.collaborator_auth_policy)
+    condition     = contains(["password", "two_factor_mandatory"], var.collaborator_auth_policy)
     error_message = "Authentication policy must be one of: password, two_factor_mandatory."
   }
+}
+
+variable "cost_estimation_enabled" {
+  description = "Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration."
+  type        = bool
+  default     = true
 }
 
 variable "create_organization" {
@@ -26,7 +32,7 @@ variable "name" {
   type        = string
 }
 
-variable "owners_team_samle_role_id" {
+variable "owners_team_saml_role_id" {
   description = "The name of the 'owners' team."
   type        = string
   default     = ""
