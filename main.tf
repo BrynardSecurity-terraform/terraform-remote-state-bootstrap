@@ -8,10 +8,16 @@ terraform {
 }
 
 #######################################################################
-# Init workspace for poc remote state                                 #
+# Create Terraform Cloud Organization                                 #
 #######################################################################
 resource "tfe_organization" "this" {
-  count = var.create_organization ? 1 : 0
-  name  = var.name
-  email = var.admin_email
+  count                                                   = var.create_organization ? 1 : 0
+  name                                                    = var.name
+  email                                                   = var.admin_email
+  session_timeout_minutes                                 = var.session_timeout_minutes
+  session_remember_minutes                                = var.session_remember_minutes
+  collaborator_auth_policy                                = var.collaborator_auth_policy
+  owners_team_saml_role_id                                = var.owners_team_saml_role_id
+  cost_estimation_enabled                                 = var.cost_estimation_enabled
+  send_passing_statuses_for_untriggered_speculative_plans = var.send_passing_statuses
 }
