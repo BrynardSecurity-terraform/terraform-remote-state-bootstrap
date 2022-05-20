@@ -23,11 +23,11 @@ repos:
         - --args=--enable-rule=terraform_documented_variables
         - --args=--module
 
-    - id: checkov
-      args: [
-        "-d", "./terraform",
-        "--framework", "terraform"
-      ]
+#    - id: checkov
+#      args: [
+#        "-d", "./terraform",
+#        "--framework", "terraform"
+#      ]
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.1.0
