@@ -40,7 +40,7 @@ resource "tfe_workspace" "this" {
     content {
       identifier         = var.vcs_repository
       branch             = var.vcs_branch
-      oauth_token_id     = file("./.oauth-token")
+      oauth_token_id     = var.oauth_token_id
       ingress_submodules = var.ingress_submodules
     }
   }
