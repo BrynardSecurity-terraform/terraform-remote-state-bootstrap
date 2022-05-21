@@ -1,30 +1,33 @@
-#data "tfe_workspace_ids" "this" {
-#  names                         = var.remote_state_consumer_ids
-#  organization                  = var.organization
-#}
+data "template_file" "tfe_oauth_token" {
+  template = file("${path.module}/tfe-oauth-token.sh.tpl")
 
-#data "tfe_agent_pool" "this" {
-#  name                          = var.agent_pool_name
-#  organization                  = var.organization
-#}
+  vars = {
+    token        = "${var.tfe_token}"
+    organization = "${var.organization}"
+  }
+}
 
-locals {
-  #  remote_state_consumer_ids     = concat(["${data.tfe_workspace_ids.this.id}"])
-  #  agent_pool_id                 = data.tfe_agent_pool.this.id
+resource "null_resource" "tfe_oauth_token" {
+  triggers = {
+    token        = "${var.tfe_token}"
+    organization = "${var.organization}"
+  }
+
+  provisioner "local-exec" {
+    command = data.template_file.tfe_oauth_token.rendered
+  }
 }
 
 resource "tfe_workspace" "this" {
-  #  agent_pool_id                 = local.agent_pool_id ? var.execution_mode == "agent" : null
-  allow_destroy_plan    = var.allow_destroy_plan
-  auto_apply            = var.auto_apply
-  description           = var.workspace_description
-  execution_mode        = var.execution_mode
-  file_triggers_enabled = var.file_triggers_enabled
-  global_remote_state   = var.global_remote_state
-  name                  = var.name
-  organization          = var.organization
-  queue_all_runs        = var.queue_all_runs
-  #  remote_state_consumer_ids     = [data.tfe_workspace_ids.this.id ? var.global_remote_state == true : null]
+  allow_destroy_plan            = var.allow_destroy_plan
+  auto_apply                    = var.auto_apply
+  description                   = var.workspace_description
+  execution_mode                = var.execution_mode
+  file_triggers_enabled         = var.file_triggers_enabled
+  global_remote_state           = var.global_remote_state
+  name                          = var.name
+  organization                  = var.organization
+  queue_all_runs                = var.queue_all_runs
   speculative_enabled           = var.speculative_enabled
   structured_run_output_enabled = var.structured_run_output_enabled
   ssh_key_id                    = var.ssh_key_id
@@ -37,7 +40,7 @@ resource "tfe_workspace" "this" {
     content {
       identifier         = var.vcs_repository
       branch             = var.vcs_branch
-      oauth_token_id     = var.oauth_token_id
+      oauth_token_id     = file("./.oauth-token")
       ingress_submodules = var.ingress_submodules
     }
   }
@@ -51,3 +54,4 @@ resource "tfe_variable_set" "this" {
   global       = var.global
   organization = var.organization
 }
+

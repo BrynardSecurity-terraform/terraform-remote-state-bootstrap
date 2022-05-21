@@ -2,7 +2,7 @@
 data "template_file" "tfe_credentials" {
   template = file("${path.module}/credentials.tfrc.json.tpl")
   vars = {
-    tfe_api_token = var.tfe_api_token
+    tfe_token = var.tfe_token
   }
 }
 
@@ -11,7 +11,7 @@ resource "local_file" "tfe_credentials" {
   filename = "./credentials.tfrc.json"
 }
 
-variable "tfe_api_token" {
+variable "tfe_token" {
   description = "Terraform API token"
   type        = string
 }
@@ -36,6 +36,7 @@ variable "workspace" {
     structured_run_output_enabled = bool
     ssh_key_id                    = string
     terraform_version             = string
+    tfe_token                     = string
     trigger_prefixes              = list(string)
     tags                          = list(string)
     vcs_repository                = string
@@ -65,6 +66,7 @@ module "tfe_workspace_test" {
   structured_run_output_enabled = each.value.structured_run_output_enabled
   ssh_key_id                    = each.value.ssh_key_id
   terraform_version             = each.value.terraform_version
+  tfe_token                     = each.value.tfe_token
   trigger_prefixes              = each.value.trigger_prefixes
   tags                          = each.value.tags
   vcs_repository                = each.value.vcs_repository

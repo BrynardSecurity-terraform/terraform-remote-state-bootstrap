@@ -127,6 +127,10 @@ variable "tags" {
   default     = []
 }
 
+variable "tfe_token" {
+  description = "Token from the TFE account for the TFE provider API access"
+}
+
 variable "vcs_repository" {
   description = "The VCS Repository to add to the workspace"
   type        = string
