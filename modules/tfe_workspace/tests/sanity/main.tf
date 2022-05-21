@@ -27,8 +27,8 @@ variable "workspace" {
     execution_mode                = string
     file_triggers_enabled         = bool
     global_remote_state           = bool
+    ingress_submodules            = bool
     name                          = string
-    oauth_token_id                = string
     organization                  = string
     queue_all_runs                = bool
     remote_state_consumer_ids     = string
@@ -40,6 +40,7 @@ variable "workspace" {
     trigger_prefixes              = list(string)
     tags                          = list(string)
     vcs_repository                = string
+    vcs_branch                    = string
     workspace_description         = string
     working_directory             = string
     workspace_variable            = bool
@@ -58,7 +59,6 @@ module "tfe_workspace_test" {
   execution_mode                = each.value.execution_mode
   global_remote_state           = each.value.global_remote_state
   name                          = each.value.name
-  oauth_token_id                = each.value.oauth_token_id
   organization                  = each.value.organization
   queue_all_runs                = each.value.queue_all_runs
   remote_state_consumer_ids     = [each.value.remote_state_consumer_ids]

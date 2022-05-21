@@ -1,5 +1,6 @@
 data "template_file" "tfe_oauth_token" {
-  template = file("${path.module}/tfe-oauth-token.sh.tpl")
+  depends_on = [tfe_team.producer]
+  template   = file("${path.module}/tfe-oauth-token.sh.tpl")
 
   vars = {
     token        = "${var.tfe_token}"
@@ -8,6 +9,7 @@ data "template_file" "tfe_oauth_token" {
 }
 
 resource "null_resource" "tfe_oauth_token" {
+  depends_on = [tfe_team.producer]
   triggers = {
     token        = "${var.tfe_token}"
     organization = "${var.organization}"
@@ -19,6 +21,7 @@ resource "null_resource" "tfe_oauth_token" {
 }
 
 resource "tfe_workspace" "this" {
+  depends_on                    = [null_resource.tfe_oauth_token]
   allow_destroy_plan            = var.allow_destroy_plan
   auto_apply                    = var.auto_apply
   description                   = var.workspace_description
@@ -55,3 +58,24 @@ resource "tfe_variable_set" "this" {
   organization = var.organization
 }
 
+resource "tfe_team" "producer" {
+  count        = var.tfe_producer_team_id == "" ? 1 : 0
+  name         = var.tfe_producer_name
+  organization = var.organization
+}
+
+resource "tfe_team_token" "producer" {
+  count   = var.tfe_producer_team_id == "" ? 1 : 0
+  team_id = tfe_team.producer[count.index].id
+}
+
+resource "tfe_team" "consumer" {
+  count        = var.tfe_consumer_team_id == "" ? 1 : 0
+  name         = var.tfe_consumer_name
+  organization = var.organization
+}
+
+resource "tfe_team_token" "consumer" {
+  count   = var.tfe_consumer_team_id == "" ? 1 : 0
+  team_id = tfe_team.consumer[count.index].id
+}

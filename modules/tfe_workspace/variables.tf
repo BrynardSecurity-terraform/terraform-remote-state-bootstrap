@@ -62,15 +62,15 @@ variable "global_remote_state" {
   default     = false
 }
 
+variable "ingress_submodules" {
+  description = "Optional) Whether submodules should be fetched when cloning the VCS repository. Defaults to false."
+  type        = bool
+  default     = false
+}
+
 variable "name" {
   description = "Workspace name"
   type        = string
-}
-
-variable "oauth_token_id" {
-  description = "The VCS Connection token to use"
-  type        = string
-  default     = ""
 }
 
 variable "organization" {
@@ -115,6 +115,42 @@ variable "terraform_version" {
   default     = "1.2.0"
 }
 
+variable "tfe_consumer_name" {
+  description = "Name of the \"Consumer\" team, defaults to \"tfe-workspace-consumer\""
+  type        = string
+  default     = "tfe-workspace-consumer"
+}
+
+variable "tfe_consumer_team_access" {
+  description = "Access level for the \"Consumer\" team"
+  type        = string
+  default     = "read"
+}
+
+variable "tfe_consumer_team_id" {
+  description = "ID of \"Consumer\" team in TFE to use, if empty, a team will be created"
+  type        = string
+  default     = ""
+}
+
+variable "tfe_producer_name" {
+  description = "Name of the \"Producer\" workspace and team."
+  type        = string
+  default     = "tfe-workspace-producer"
+}
+
+variable "tfe_producer_team_access" {
+  description = "Access level for the \"Producer\" team, defaults to \"admin\""
+  type        = string
+  default     = "admin"
+}
+
+variable "tfe_producer_team_id" {
+  description = "ID of \"Producer\" team in TFE to use. If empty, a team will be created"
+  type        = string
+  default     = ""
+}
+
 variable "trigger_prefixes" {
   description = "(Optional) List of repository-root-relative paths which describe all locations to be tracked for changes."
   type        = list(string)
@@ -129,6 +165,12 @@ variable "tags" {
 
 variable "tfe_token" {
   description = "Token from the TFE account for the TFE provider API access"
+}
+
+variable "vcs_branch" {
+  description = "(Optional) The repository branch that Terraform will execute from. This defaults to the repository's default branch (e.g. main)."
+  type        = string
+  default     = "main"
 }
 
 variable "vcs_repository" {
