@@ -1,23 +1,3 @@
-data "template_file" "tfe_oauth_token" {
-  template = file("${path.module}/tfe-oauth-token.sh.tpl")
-
-  vars = {
-    token        = "${var.tfe_token}"
-    organization = "${var.organization}"
-  }
-}
-
-resource "null_resource" "tfe_oauth_token" {
-  triggers = {
-    token        = "${var.tfe_token}"
-    organization = "${var.organization}"
-  }
-
-  provisioner "local-exec" {
-    command = data.template_file.tfe_oauth_token.rendered
-  }
-}
-
 resource "tfe_workspace" "this" {
   allow_destroy_plan            = var.allow_destroy_plan
   auto_apply                    = var.auto_apply

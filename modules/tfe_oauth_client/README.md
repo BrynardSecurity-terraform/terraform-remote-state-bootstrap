@@ -43,5 +43,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_oauth_token_id"></a> [oauth\_token\_id](#output\_oauth\_token\_id) | n/a |
+| <a name="output_oauth_token_id"></a> [oauth\_token\_id](#output\_oauth\_token\_id) | The ID of the OAuth token associated with the OAuth client |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
