@@ -55,3 +55,12 @@ resource "tfe_variable_set" "this" {
   organization = var.organization
 }
 
+resource "tfe_oauth_client" "this" {
+  count            = var.add_vcs_repo ? 1 : 0
+  name             = var.tfe_oauth_client_name
+  organization     = var.organization
+  api_url          = var.api_url
+  http_url         = var.https_url
+  oauth_token      = var.oauth_token
+  service_provider = var.service_provider
+}

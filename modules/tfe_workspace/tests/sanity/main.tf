@@ -16,6 +16,8 @@ variable "tfe_token" {
   type        = string
 }
 
+
+
 variable "workspace" {
   description = "Mapped variables for workspace testing"
   type = map(object({

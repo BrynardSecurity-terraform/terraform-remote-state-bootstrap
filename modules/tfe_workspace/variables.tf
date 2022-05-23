@@ -22,6 +22,12 @@ variable "allow_destroy_plan" {
   default     = false
 }
 
+variable "api_url" {
+  description = "API URL of the Version Control Provider"
+  type        = string
+  default     = ""
+}
+
 variable "auto_apply" {
   description = "Whether to automatically apply changes when a Terraform plan is successful. Defaults to false"
   type        = bool
@@ -62,9 +68,22 @@ variable "global_remote_state" {
   default     = false
 }
 
+variable "https_url" {
+  description = "HTTP URL of the VCS provider"
+  type        = string
+  default     = ""
+}
+
 variable "name" {
   description = "Workspace name"
   type        = string
+}
+
+variable "oauth_token" {
+  description = "OAuth Token String provided by the VCS provider"
+  type        = string
+  sensitive   = true
+  default     = ""
 }
 
 variable "oauth_token_id" {
@@ -90,6 +109,12 @@ variable "remote_state_consumer_ids" {
   default     = [""]
 }
 
+variable "service_provider" {
+  description = "VCS provider being connected with"
+  type        = string
+  default     = "github"
+}
+
 variable "speculative_enabled" {
   description = "Optional) Whether this workspace allows speculative plans. Defaults to true. Setting this to false prevents Terraform Cloud or the Terraform Enterprise instance from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors."
   type        = bool
@@ -113,6 +138,12 @@ variable "terraform_version" {
   description = "(Optional) The version of Terraform to use for this workspace. This can be either an exact version or a version constraint (like ~> 1.0.0); if you specify a constraint, the workspace will always use the newest release that meets that constraint. Defaults to the latest available version."
   type        = string
   default     = "1.2.0"
+}
+
+variable "tfe_oauth_client_name" {
+  description = "Display name of the OAuth Client"
+  type        = string
+  default     = ""
 }
 
 variable "trigger_prefixes" {
