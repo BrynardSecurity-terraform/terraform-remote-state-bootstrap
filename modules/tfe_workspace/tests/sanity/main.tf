@@ -16,6 +16,30 @@ variable "tfe_token" {
   type        = string
 }
 
+variable "oauth_client" {
+  description = "Mapped variables for OAuth Client testing"
+  type = map(object({
+    api_url               = string
+    https_url             = string
+    oauth_token           = string
+    organization          = string
+    service_provider      = string
+    tfe_oauth_client_name = string
+  }))
+}
+
+module "oauth_client" {
+  source                = "../../../tfe_oauth_client"
+  for_each              = var.oauth_client
+  depends_on            = [module.tfe_organization_test]
+  api_url               = each.value.api_url
+  https_url             = each.value.https_url
+  oauth_token           = each.value.oauth_token
+  organization          = each.value.organization
+  service_provider      = each.value.service_provider
+  tfe_oauth_client_name = each.value.tfe_oauth_client_name
+}
+
 variable "workspace" {
   description = "Mapped variables for workspace testing"
   type = map(object({

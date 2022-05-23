@@ -62,15 +62,26 @@ variable "global_remote_state" {
   default     = false
 }
 
+variable "ingress_submodules" {
+  description = "(Optional) Whether submodules should be fetched when cloning the VCS repository. Defaults to false"
+  type        = bool
+  default     = false
+}
+
 variable "name" {
   description = "Workspace name"
   type        = string
 }
 
-variable "oauth_token_id" {
-  description = "The VCS Connection token to use"
+variable "oauth_token" {
+  description = "The VCS Connection token to use. EG: GitHub Personal Access Token"
   type        = string
   default     = ""
+}
+
+variable "oauth_token_id" {
+  description = "The output of the tfe_oauth_client module."
+  type        = string
 }
 
 variable "organization" {
@@ -129,6 +140,12 @@ variable "tags" {
 
 variable "tfe_token" {
   description = "Token from the TFE account for the TFE provider API access"
+}
+
+variable "vcs_branch" {
+  description = "(Optional) The repository branch that Terraform will execute from. This defaults to the repository's default branch (e.g. main)."
+  type        = string
+  default     = "main"
 }
 
 variable "vcs_repository" {
