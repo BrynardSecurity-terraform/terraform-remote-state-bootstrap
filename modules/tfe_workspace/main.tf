@@ -27,11 +27,3 @@ resource "tfe_workspace" "this" {
 
   tag_names = var.tags
 }
-
-resource "tfe_variable_set" "this" {
-  count        = var.create_variable_set ? 1 : 0
-  name         = var.name
-  global       = var.global
-  organization = var.organization
-}
-

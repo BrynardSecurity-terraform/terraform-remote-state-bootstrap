@@ -28,7 +28,13 @@ variable "auto_apply" {
   default     = false
 }
 
-variable "create_variable_set" {
+variable "create_global_variable_set" {
+  description = "Whether or not to create a variable set"
+  type        = bool
+  default     = false
+}
+
+variable "create_workspace_variable_set" {
   description = "Whether or not to create a variable set"
   type        = bool
   default     = false
@@ -166,6 +172,11 @@ variable "working_directory" {
   default     = "/"
 }
 
+variable "workspace_ids" {
+  description = "List of workspace ID's if variable set is not global"
+  type        = list(string)
+  default     = [""]
+}
 variable "workspace_variable" {
   description = "Whether this variable should be attached to a workspace"
   type        = bool
