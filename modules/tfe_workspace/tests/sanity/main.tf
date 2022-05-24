@@ -11,64 +11,17 @@ resource "local_file" "tfe_credentials" {
   filename = "./credentials.tfrc.json"
 }
 
-variable "tfe_token" {
-  description = "Terraform API token"
-  type        = string
-}
-
-variable "oauth_client" {
-  description = "Mapped variables for OAuth Client testing"
-  type = map(object({
-    api_url               = string
-    https_url             = string
-    oauth_token           = string
-    organization          = string
-    service_provider      = string
-    tfe_oauth_client_name = string
-  }))
-}
-
 module "oauth_client" {
   source                = "../../../tfe_oauth_client"
-  for_each              = var.oauth_client
   depends_on            = [module.tfe_organization_test]
-  api_url               = each.value.api_url
-  https_url             = each.value.https_url
-  oauth_token           = each.value.oauth_token
-  organization          = each.value.organization
-  service_provider      = each.value.service_provider
-  tfe_oauth_client_name = each.value.tfe_oauth_client_name
+  api_url               = var.api_url
+  https_url             = var.https_url
+  oauth_token           = var.oauth_token
+  organization          = module.tfe_organization_test.tfe_organization_id
+  service_provider      = var.service_provider
+  tfe_oauth_client_name = var.service_provider
 }
 
-variable "workspace" {
-  description = "Mapped variables for workspace testing"
-  type = map(object({
-    add_vcs_repo                  = bool
-    agent_pool_id                 = string
-    allow_destroy_plan            = bool
-    auto_apply                    = bool
-    create_variable_set           = bool
-    execution_mode                = string
-    file_triggers_enabled         = bool
-    global_remote_state           = bool
-    name                          = string
-    oauth_token_id                = string
-    organization                  = string
-    queue_all_runs                = bool
-    remote_state_consumer_ids     = string
-    speculative_enabled           = bool
-    structured_run_output_enabled = bool
-    ssh_key_id                    = string
-    terraform_version             = string
-    tfe_token                     = string
-    trigger_prefixes              = list(string)
-    tags                          = list(string)
-    vcs_repository                = string
-    workspace_description         = string
-    working_directory             = string
-    workspace_variable            = bool
-  }))
-}
 
 module "tfe_workspace_test" {
   source                        = "../../"
@@ -78,11 +31,12 @@ module "tfe_workspace_test" {
   agent_pool_id                 = each.value.agent_pool_id
   allow_destroy_plan            = each.value.allow_destroy_plan
   auto_apply                    = each.value.auto_apply
-  create_variable_set           = each.value.create_variable_set
+  create_global_variable_set    = each.value.create_global_variable_set
+  create_workspace_variable_set = each.value.create_workspace_variable_set
   execution_mode                = each.value.execution_mode
   global_remote_state           = each.value.global_remote_state
   name                          = each.value.name
-  oauth_token_id                = each.value.oauth_token_id
+  oauth_token_id                = module.oauth_client.oauth_token_id
   organization                  = each.value.organization
   queue_all_runs                = each.value.queue_all_runs
   remote_state_consumer_ids     = [each.value.remote_state_consumer_ids]
@@ -99,27 +53,15 @@ module "tfe_workspace_test" {
   workspace_variable            = each.value.workspace_variable
 }
 
-variable "organization" {
-  description = "Mapped variables for organization testing"
-  type = map(object({
-    name                = string
-    email               = string
-    create_organization = bool
-  }))
-}
-
 module "tfe_organization_test" {
   source              = "../../../../"
-  for_each            = var.organization
-  name                = each.value.name
-  admin_email         = each.value.email
-  create_organization = each.value.create_organization
+  name                = var.organization
+  admin_email         = var.admin_email
+  create_organization = var.create_organization
 }
 
 output "tfe_organization_id" {
-  value = tomap({
-    for k, i in module.tfe_organization_test : k => i.tfe_organization_id
-  })
+  value = module.tfe_organization_test.tfe_organization_id
 }
 
 output "tfe_workspace_test" {
