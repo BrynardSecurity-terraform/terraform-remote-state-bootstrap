@@ -44,6 +44,19 @@ variable "tfe_token" {
   type        = string
 }
 
+variable "variable_set" {
+  description = "Mapped variables for variable set"
+  type = map(object({
+    create_variable_set      = bool
+    global                   = bool
+    organization             = string
+    variable_set_description = string
+    variable_set_name        = string
+    workspace_ids            = list(string)
+  }))
+}
+
+
 
 variable "workspace" {
   description = "Mapped variables for workspace testing"

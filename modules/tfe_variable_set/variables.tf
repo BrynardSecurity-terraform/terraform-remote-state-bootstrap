@@ -1,7 +1,13 @@
-variable "is_global" {
-  description = "Whether the variable set is a global variable or workspace variable"
+variable "create_variable_set" {
+  description = "Whether to create the variable set"
   type        = bool
   default     = false
+}
+
+variable "global" {
+  description = "Whether the variable set is a global variable or workspace variable"
+  type        = bool
+  default     = true
 }
 
 variable "organization" {
@@ -23,6 +29,6 @@ variable "variable_set_name" {
 variable "workspace_ids" {
   description = "(Optional) IDs of the workspaces that use the variable set. Must not be set if global is set."
   type        = list(string)
-  default     = [""]
+  default     = null
 }
 

@@ -60,12 +60,23 @@ module "tfe_organization_test" {
   create_organization = var.create_organization
 }
 
-output "tfe_organization_id" {
-  value = module.tfe_organization_test.tfe_organization_id
+data "tfe_workspace_ids" "add_vcs_repo" {
+  tag_names    = ["add_vcs", "true"]
+  organization = module.tfe_organization_test.tfe_organization_id
 }
 
-output "tfe_workspace_test" {
-  value = tomap({
-    for k, i in module.tfe_workspace_test : k => i.tfe_workspace_test
-  })
+module "variable_set" {
+  source                   = "../../../tfe_variable_set"
+  depends_on               = [module.tfe_organization_test]
+  for_each                 = var.variable_set
+  create_variable_set      = each.value.create_variable_set
+  global                   = each.value.global
+  organization             = module.tfe_organization_test.tfe_organization_id
+  variable_set_description = each.value.variable_set_description
+  variable_set_name        = each.value.variable_set_name
+  workspace_ids            = each.value.workspace_ids
+}
+
+output "workspace_ids" {
+  value = values(data.tfe_workspace_ids.add_vcs_repo)
 }
