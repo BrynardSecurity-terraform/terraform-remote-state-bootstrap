@@ -34,12 +34,6 @@ variable "create_global_variable_set" {
   default     = false
 }
 
-variable "create_workspace_variable_set" {
-  description = "Whether or not to create a variable set"
-  type        = bool
-  default     = false
-}
-
 variable "execution_mode" {
   description = "Which execution mode to use. Available options: remote, local, or agent"
   type        = string
