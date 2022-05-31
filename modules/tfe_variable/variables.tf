@@ -46,12 +46,6 @@ variable "value" {
   type        = string
 }
 
-variable "variable_set" {
-  description = "Whether this variable should be added to a variable set"
-  type        = bool
-  default     = true
-}
-
 variable "variable_set_id" {
   description = "ID of the variable set that owns the variable."
   type        = string
