@@ -12,12 +12,6 @@ variable "create_variable" {
   default     = false
 }
 
-variable "customer_name" {
-  description = "POC customer name"
-  type        = string
-  default     = "Acme Co."
-}
-
 variable "description" {
   description = "The description of the variable"
   type        = string

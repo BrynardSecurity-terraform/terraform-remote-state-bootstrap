@@ -34,7 +34,6 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_category"></a> [category](#input\_category) | Whether this is a Terraform or environment variable. Available options: terraform or env | `string` | `"terraform"` | no |
 | <a name="input_create_variable"></a> [create\_variable](#input\_create\_variable) | Whether this variable should be created | `bool` | `false` | no |
-| <a name="input_customer_name"></a> [customer\_name](#input\_customer\_name) | POC customer name | `string` | `"Acme Co."` | no |
 | <a name="input_description"></a> [description](#input\_description) | The description of the variable | `string` | `null` | no |
 | <a name="input_description_suffix"></a> [description\_suffix](#input\_description\_suffix) | Whether to add a suffix to the description of the variable | `string` | `""` | no |
 | <a name="input_hcl"></a> [hcl](#input\_hcl) | Whether to evaluate the value of the variable as a string of HCL code | `bool` | `false` | no |
