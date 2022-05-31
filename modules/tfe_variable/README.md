@@ -41,7 +41,8 @@ No modules.
 | <a name="input_sensitive"></a> [sensitive](#input\_sensitive) | Whether the variable value is sensitive | `bool` | `false` | no |
 | <a name="input_value"></a> [value](#input\_value) | Value of the variable | `string` | n/a | yes |
 | <a name="input_variable_set"></a> [variable\_set](#input\_variable\_set) | Whether this variable should be added to a variable set | `bool` | `true` | no |
-| <a name="input_workspace_id"></a> [workspace\_id](#input\_workspace\_id) | Workspace ID for the variable | `string` | `""` | no |
+| <a name="input_variable_set_id"></a> [variable\_set\_id](#input\_variable\_set\_id) | ID of the variable set that owns the variable. | `string` | `null` | no |
+| <a name="input_workspace_id"></a> [workspace\_id](#input\_workspace\_id) | Workspace ID for the variable | `string` | `null` | no |
 
 ## Outputs
 

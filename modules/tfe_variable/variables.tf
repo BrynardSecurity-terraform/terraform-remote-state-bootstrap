@@ -52,8 +52,14 @@ variable "variable_set" {
   default     = true
 }
 
+variable "variable_set_id" {
+  description = "ID of the variable set that owns the variable."
+  type        = string
+  default     = null
+}
+
 variable "workspace_id" {
   description = "Workspace ID for the variable"
   type        = string
-  default     = ""
+  default     = null
 }
