@@ -20,7 +20,6 @@ No modules.
 | Name | Type |
 |------|------|
 | [tfe_variable_set.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable_set) | resource |
-| [tfe_variable_set.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/variable_set) | data source |
 
 ## Inputs
 
@@ -38,5 +37,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_tfe_variable_set_id"></a> [tfe\_variable\_set\_id](#output\_tfe\_variable\_set\_id) | n/a |
-| <a name="output_tfe_variable_set_name"></a> [tfe\_variable\_set\_name](#output\_tfe\_variable\_set\_name) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
