@@ -1,12 +1,3 @@
-# Remote State Bootstrap Module -- main.tf
-terraform {
-  required_providers {
-    tfe = {
-      version = "~> 0.30.2"
-    }
-  }
-}
-
 #######################################################################
 # Create Terraform Cloud Organization                                 #
 #######################################################################
