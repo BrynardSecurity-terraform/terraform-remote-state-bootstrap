@@ -24,4 +24,5 @@ jobs:
       - name: Terraform validate
         run: |
           cd ${{ matrix.path }}
+          terraform init -input=false
           terraform validate
