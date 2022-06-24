@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
       - name: create pull request
         uses: repo-sync/pull-request@v2
-        id: open-pr
+        id: autopr
         with:
           pr_title: Automatic Pull Request
           github_token: ${{ secrets.GH_PAT_TOKEN }}
