@@ -6,8 +6,6 @@
 name: tfsec
 
 on:
-  push:
-    branches: ['*','!main','!staging','!development']
   pull_request:
     branches: [ main,development,staging ]
   schedule:
