@@ -33,6 +33,7 @@ variable "hcl" {
 variable "key" {
   description = "Name of the variable"
   type        = string
+  default     = ""
 }
 
 variable "sensitive" {
@@ -44,6 +45,7 @@ variable "sensitive" {
 variable "value" {
   description = "Value of the variable"
   type        = string
+  default     = ""
 }
 
 variable "variable_set_id" {

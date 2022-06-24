@@ -1,0 +1,36 @@
+name: Sanity Test
+on:
+  pull_request:
+    branches: [staging]
+
+jobs:
+  sanity:
+    name: Sanity Test
+    runs-on: ${{ matrix.runs-on }}
+    environment: development
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [macos-latest,ubuntu-latest]
+        path: [/,modules/tfe_notification,modules/tfe_oauth_client,modules/tfe_variable,modules/tfe_variable_set,modules/tfe_workspace]
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Initialize Terraform
+        id: init
+        run: |
+          cd ${{ matrix.path }}
+          terraform init -input=false
+      - name: Plan Terraform
+        id: plan
+        continue-on-error: true
+        run: |
+          cd ${{ matrix.path }}
+          terraform plan -input=false -no-color -out=tfplan \
+          && terraform show -no-color tfplan
+

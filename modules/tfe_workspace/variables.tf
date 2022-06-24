@@ -82,11 +82,13 @@ variable "oauth_token" {
 variable "oauth_token_id" {
   description = "The output of the tfe_oauth_client module."
   type        = string
+  default     = null
 }
 
 variable "organization" {
   description = "Terraform Cloud organization which has the backend state-file"
   type        = string
+  default     = ""
 }
 
 variable "queue_all_runs" {
@@ -140,6 +142,8 @@ variable "tags" {
 
 variable "tfe_token" {
   description = "Token from the TFE account for the TFE provider API access"
+  sensitive   = true
+  default     = null
 }
 
 variable "vcs_branch" {

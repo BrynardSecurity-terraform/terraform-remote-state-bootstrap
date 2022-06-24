@@ -18,7 +18,7 @@ _This README was generated with ❤️ by [readme-md-generator](https://github.c
 
 | Name | Version |
 |------|---------|
-| <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.31.0 |
+| <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.30.2 |
 
 ## Modules
 
@@ -39,9 +39,9 @@ No modules.
 | <a name="input_description"></a> [description](#input\_description) | The description of the variable | `string` | `null` | no |
 | <a name="input_description_suffix"></a> [description\_suffix](#input\_description\_suffix) | Whether to add a suffix to the description of the variable | `string` | `""` | no |
 | <a name="input_hcl"></a> [hcl](#input\_hcl) | Whether to evaluate the value of the variable as a string of HCL code | `bool` | `false` | no |
-| <a name="input_key"></a> [key](#input\_key) | Name of the variable | `string` | n/a | yes |
+| <a name="input_key"></a> [key](#input\_key) | Name of the variable | `string` | `""` | no |
 | <a name="input_sensitive"></a> [sensitive](#input\_sensitive) | Whether the variable value is sensitive | `bool` | `false` | no |
-| <a name="input_value"></a> [value](#input\_value) | Value of the variable | `string` | n/a | yes |
+| <a name="input_value"></a> [value](#input\_value) | Value of the variable | `string` | `""` | no |
 | <a name="input_variable_set_id"></a> [variable\_set\_id](#input\_variable\_set\_id) | ID of the variable set that owns the variable. | `string` | `null` | no |
 | <a name="input_workspace_id"></a> [workspace\_id](#input\_workspace\_id) | Workspace ID for the variable | `string` | `null` | no |
 
