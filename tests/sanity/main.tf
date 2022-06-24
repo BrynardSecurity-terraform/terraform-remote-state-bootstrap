@@ -12,7 +12,7 @@ resource "local_file" "tfe_credentials" {
 }
 
 module "oauth_client" {
-  source                = "../../../tfe_oauth_client"
+  source                = "../../modules/tfe_oauth_client"
   depends_on            = [module.tfe_organization_test]
   api_url               = var.api_url
   https_url             = var.https_url
@@ -24,15 +24,14 @@ module "oauth_client" {
 
 
 module "tfe_workspace_test" {
-  source                        = "../../"
+  source                        = "../../modules/tfe_workspace"
   depends_on                    = [module.tfe_organization_test]
   for_each                      = var.workspace
+  create_workspace              = each.value.create_workspace
   add_vcs_repo                  = each.value.add_vcs_repo
   agent_pool_id                 = each.value.agent_pool_id
   allow_destroy_plan            = each.value.allow_destroy_plan
   auto_apply                    = each.value.auto_apply
-  create_global_variable_set    = each.value.create_global_variable_set
-  create_workspace_variable_set = each.value.create_workspace_variable_set
   execution_mode                = each.value.execution_mode
   global_remote_state           = each.value.global_remote_state
   name                          = each.value.name
@@ -54,7 +53,7 @@ module "tfe_workspace_test" {
 }
 
 module "tfe_organization_test" {
-  source              = "../../../../"
+  source              = "../../"
   name                = var.organization
   admin_email         = var.admin_email
   create_organization = var.create_organization
@@ -66,7 +65,7 @@ data "tfe_workspace_ids" "add_vcs_repo" {
 }
 
 module "variable_set" {
-  source                   = "../../../tfe_variable_set"
+  source                   = "../../modules/tfe_variable_set"
   depends_on               = [module.tfe_organization_test]
   for_each                 = var.variable_set
   create_variable_set      = each.value.create_variable_set

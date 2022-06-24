@@ -17,10 +17,10 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_oauth_client"></a> [oauth\_client](#module\_oauth\_client) | ../../../tfe_oauth_client | n/a |
-| <a name="module_tfe_organization_test"></a> [tfe\_organization\_test](#module\_tfe\_organization\_test) | ../../../../ | n/a |
-| <a name="module_tfe_workspace_test"></a> [tfe\_workspace\_test](#module\_tfe\_workspace\_test) | ../../ | n/a |
-| <a name="module_variable_set"></a> [variable\_set](#module\_variable\_set) | ../../../tfe_variable_set | n/a |
+| <a name="module_oauth_client"></a> [oauth\_client](#module\_oauth\_client) | ../../modules/tfe_oauth_client | n/a |
+| <a name="module_tfe_organization_test"></a> [tfe\_organization\_test](#module\_tfe\_organization\_test) | ../../ | n/a |
+| <a name="module_tfe_workspace_test"></a> [tfe\_workspace\_test](#module\_tfe\_workspace\_test) | ../../modules/tfe_workspace | n/a |
+| <a name="module_variable_set"></a> [variable\_set](#module\_variable\_set) | ../../modules/tfe_variable_set | n/a |
 
 ## Resources
 
