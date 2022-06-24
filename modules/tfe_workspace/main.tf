@@ -1,4 +1,5 @@
 resource "tfe_workspace" "this" {
+  for_each                      = var.create_workspace ? [1] : []
   allow_destroy_plan            = var.allow_destroy_plan
   auto_apply                    = var.auto_apply
   description                   = var.workspace_description

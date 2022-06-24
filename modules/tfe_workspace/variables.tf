@@ -28,8 +28,8 @@ variable "auto_apply" {
   default     = false
 }
 
-variable "create_global_variable_set" {
-  description = "Whether or not to create a variable set"
+variable "create_workspace" {
+  description = "Whether or not to create the Terraform Cloud workspace"
   type        = bool
   default     = false
 }
