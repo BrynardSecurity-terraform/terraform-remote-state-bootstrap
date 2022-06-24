@@ -30,7 +30,7 @@ variable "enabled" {
 variable "notification_name" {
   description = "The name of the notification"
   type        = string
-  default     = "sophos-factory-runner"
+  default     = ""
 }
 
 variable "triggers" {

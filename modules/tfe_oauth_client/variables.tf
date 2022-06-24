@@ -2,11 +2,13 @@
 variable "api_url" {
   description = "API URL of the Version Control Provider"
   type        = string
+  default     = "https://api.github.com"
 }
 
 variable "https_url" {
   description = "HTTP URL of the VCS provider"
   type        = string
+  default     = "https://github.com"
 }
 
 variable "oauth_token" {
@@ -29,6 +31,7 @@ variable "service_provider" {
 variable "tfe_oauth_client_name" {
   description = "Display name of the OAuth Client"
   type        = string
+  default     = "github"
 }
 
 
