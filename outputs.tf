@@ -1,7 +1,3 @@
-output "workspace_id" {
-  value = tfe_workspace.this.id
-}
-
-output "repository" {
-  value = var.vcs_repository
+output "tfe_organization_id" {
+  value = tfe_organization.this[0].id
 }

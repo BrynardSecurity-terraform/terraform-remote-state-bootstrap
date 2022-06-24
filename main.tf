@@ -1,40 +1,14 @@
-# Remote State Bootstrap Module -- main.tf
-terraform {
-    required_providers {
-        tfe = {
-            version = "~> 0.30.2"
-        }
-    }
-}
-
 #######################################################################
-# Init workspace for poc remote state                                 #
+# Create Terraform Cloud Organization                                 #
 #######################################################################
-
-resource "tfe_workspace" "this" {
-  name                      = var.name
-  organization              = var.organization
-  execution_mode            = var.execution_mode
-  allow_destroy_plan        = var.allow_destroy_plan
-  auto_apply                = var.auto_apply
-  working_directory         = var.working_directory
-  remote_state_consumer_ids = tfe_workspace.this.id
-
-  dynamic "vcs_repo" {
-    for_each = var.add_vcs_repo ? [1] : []
-    content {
-      identifier        = var.vcs_repository
-      branch            = var.vcs_branch
-      oauth_token_id    = var.oauth_token_id
-    }
-  }
-
-  tag_names = var.tags
-}
-
-resource "tfe_variable_set" "this" {
-  count        = var.create_variable_set ? 1 : 0
-  name         = local.workspace_name
-  global       = var.global
-  organization = var.organization
+resource "tfe_organization" "this" {
+  count                                                   = var.create_organization ? 1 : 0
+  name                                                    = var.name
+  email                                                   = var.admin_email
+  session_timeout_minutes                                 = var.session_timeout_minutes
+  session_remember_minutes                                = var.session_remember_minutes
+  collaborator_auth_policy                                = var.collaborator_auth_policy
+  owners_team_saml_role_id                                = var.owners_team_saml_role_id
+  cost_estimation_enabled                                 = var.cost_estimation_enabled
+  send_passing_statuses_for_untriggered_speculative_plans = var.send_passing_statuses
 }

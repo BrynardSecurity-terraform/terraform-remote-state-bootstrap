@@ -1,0 +1,28 @@
+name: Terraform CI
+on:
+  pull_request:
+    branches: [main,development,staging]
+
+jobs:
+  lint:
+    name: Terraform Lint
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        path: [/,modules/tfe_notification,modules/tfe_oauth_client,modules/tfe_variable,modules/tfe_variable_set,modules/tfe_workspace]
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+      - name: Terraform fmt
+        run: terraform fmt -check -diff -recursive ./
+      - name: Terraform write
+        run: terraform fmt -write=true -recursive ./
+      - name: Terraform validate
+        run: |
+          cd ${{ matrix.path }}
+          terraform init -input=false
+          terraform validate

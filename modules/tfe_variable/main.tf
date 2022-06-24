@@ -7,5 +7,6 @@ resource "tfe_variable" "this" {
   category        = var.category
   sensitive       = var.sensitive
   hcl             = var.hcl
-  workspace_id   = var.workspace_id
+  workspace_id    = var.workspace_id
+  variable_set_id = var.variable_set_id
 }

@@ -12,12 +12,6 @@ variable "create_variable" {
   default     = false
 }
 
-variable "customer_name" {
-  description = "POC customer name"
-  type        = string
-  default     = "Acme Co."
-}
-
 variable "description" {
   description = "The description of the variable"
   type        = string
@@ -52,13 +46,14 @@ variable "value" {
   type        = string
 }
 
-variable "variable_set" {
-  description = "Whether this variable should be added to a variable set"
-  type        = bool
-  default     = true
+variable "variable_set_id" {
+  description = "ID of the variable set that owns the variable."
+  type        = string
+  default     = null
 }
 
 variable "workspace_id" {
   description = "Workspace ID for the variable"
   type        = string
+  default     = null
 }
