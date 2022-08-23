@@ -7,12 +7,16 @@ terraform {
   }
 }
 
+locals {
+  name = lower(replace("${var.name}", " ", "_"))
+}
+
 #######################################################################
 # Create Terraform Cloud Organization                                 #
 #######################################################################
 resource "tfe_organization" "this" {
   count                                                   = var.create_organization ? 1 : 0
-  name                                                    = var.name
+  name                                                    = local.name
   email                                                   = var.admin_email
   session_timeout_minutes                                 = var.session_timeout_minutes
   session_remember_minutes                                = var.session_remember_minutes
