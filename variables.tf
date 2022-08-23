@@ -24,7 +24,7 @@ variable "cost_estimation_enabled" {
 variable "create_organization" {
   description = "Whether or not to create the Terraform cloud organization"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "name" {
